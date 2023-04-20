@@ -3,23 +3,17 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-data = pd.read_excel(r'C:\Users\user\Downloads\dataMatplotlib.xlsx')
+data = pd.read_excel(r'C:\Users\user\Downloads\dataMatplotlib.xlsx', usecols=['X', 'Y'])
 
-# построение графика
-plt.plot(data)
-
-# название графика и обозначение осей
-plt.title('Название графика')
-plt.xlabel('Ось X')
-plt.ylabel('Ось Y')
-
-# рассчет среднеквадратичного отклонения
-stddev = np.std(data)
-
-# вывод значения среднеквадратичного отклонения на график
-
-# сохранение графика в формате jpeg
-plt.savefig('plot.jpg')
-
-# отображение графика
+x = [float(el) for el in data['X']]
+y = [float(el) for el in data['Y']]
+plt.xlabel('Ось "Х"')
+plt.ylabel('Ось "У"')
+plt.title('Электроны в плазме')
+plt.plot(x, y)
+plt.savefig('Electrons.jpeg')
 plt.show()
+
+npx = np.array(x).std()
+npy = np.array(y).std()
+print(npx, npy)
